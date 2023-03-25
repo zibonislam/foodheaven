@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:inventory/ApiCall/models/food.dart';
+import 'package:foodheaven/models/food.dart';
 
 class FoodDetails extends StatefulWidget {
   static String idScreen = "food";

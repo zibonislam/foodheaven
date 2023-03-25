@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:inventory/ApiCall/services/foodApi.dart';
+import 'package:foodheaven/services/foodApi.dart';
 
 import '../models/food.dart';
 import 'food_detail.dart';

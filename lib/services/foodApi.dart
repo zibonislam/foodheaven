@@ -1,7 +1,6 @@
 import 'dart:math';
 
-import 'package:inventory/ApiCall/constants.dart';
-import 'package:inventory/ApiCall/models/post.dart';
+import 'package:foodheaven/constants.dart';
 
 import '../models/food.dart';
 import 'package:http/http.dart ' as http;

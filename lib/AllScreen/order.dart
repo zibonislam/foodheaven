@@ -125,10 +125,6 @@ class _OrderPageState extends State<OrderPage> {
           BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_shopping_cart),
-            
-
-            
-            
             label: "Cart",
           ),
           BottomNavigationBarItem(
@@ -136,7 +132,7 @@ class _OrderPageState extends State<OrderPage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.credit_score), label: "MY Order"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_outlined), label: "Profile"),
+              icon: Icon(Icons.person_outlined), label: "Profile"),
         ],
       ),
       appBar: AppBar(
