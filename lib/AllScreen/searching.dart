@@ -181,7 +181,7 @@ Widget foodApp() {
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(
                         // _foodModel![index].image.,
-                        ""
+                        _foodModel![index].image.toString();
                         // ${_foodModel![index].image}
                         ),
                   ),
