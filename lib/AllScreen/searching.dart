@@ -180,10 +180,10 @@ Widget foodApp() {
                 child: ListTile(
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(
-                        // _foodModel![index].image.,
-                        _foodModel![index].image.toString();
-                        // ${_foodModel![index].image}
-                        ),
+                      // _foodModel![index].image.,
+                      _foodModel![index].image.toString(),
+                      // ${_foodModel![index].image}
+                    ),
                   ),
                   title: Text(_foodModel![index].foodName.toString()),
                   subtitle: Text(_foodModel![index].price.toString()),
