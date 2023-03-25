@@ -40,10 +40,10 @@ class _OrderPageState extends State<OrderPage> {
                     child: Container(
                       height: 110,
                       width: 100,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage("images/pizza.png"))),
+                      // decoration: BoxDecoration(
+                      //     image: DecorationImage(
+                      //         fit: BoxFit.fill,
+                      //         image: AssetImage("images/pizza.png"))),
                     ),
                   ),
                   Container(

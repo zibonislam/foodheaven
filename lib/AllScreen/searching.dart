@@ -29,13 +29,13 @@ import 'food_detail.dart';
 
 late List<Food>? _foodModel = [];
 
-Future<void> getFood() async {
-  _foodModel = (await FoodService().getFood())!;
-  print("getData-----");
-  // Future.delayed(const Duration(seconds: 1)).then((value) => setState(
-  //       () {},
-  //     ));
-}
+// void getFood() async {
+//   _foodModel = (await FoodService().getFood())!;
+//   print("getData-----");
+//   Future.delayed(const Duration(seconds: 1)).then((value) => setState(
+//         () {},
+//       ));
+// }
 
 class Searching extends StatefulWidget {
   const Searching({super.key});
@@ -47,6 +47,16 @@ class Searching extends StatefulWidget {
 }
 
 class _SearchingState extends State<Searching> {
+//late List<Food>? _foodModel = [];
+
+  void getFood() async {
+    _foodModel = (await FoodService().getFood())!;
+    print("getData-----");
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(
+          () {},
+        ));
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -114,20 +124,19 @@ class _SearchingState extends State<Searching> {
   // }
 
   Widget searchingTabBar() {
-    return 
-         SafeArea(
-           child: DefaultTabController(
-               length: 2,
-               child: Scaffold(
-                 appBar: AppBar(
+    return SafeArea(
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
               backgroundColor: Colors.red,
-               leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                 Navigator.pushNamedAndRemoveUntil(
-                    context, HomeScreen.idScreen, (route) => false);
-              },
-            ),
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, HomeScreen.idScreen, (route) => false);
+                },
+              ),
               title: Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Column(
@@ -145,8 +154,7 @@ class _SearchingState extends State<Searching> {
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14.0,
-                                  )
-                                  ),
+                                  )),
                             ),
                           ),
                           Expanded(
@@ -163,12 +171,12 @@ class _SearchingState extends State<Searching> {
                 ),
               ),
               bottom: const TabBar(tabs: [Text("Food"), Text("Restaurant")])),
-                 body: TabBarView(
+          body: TabBarView(
             children: [foodApp(), restaurentApp()],
-                 ),
-               ),
-             ),
-         );
+          ),
+        ),
+      ),
+    );
   }
 }
 
