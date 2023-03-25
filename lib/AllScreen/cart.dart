@@ -4,7 +4,6 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:foodheaven/AllScreen/homeScreen.dart';
 
 class CartPage extends StatefulWidget {
-
   static String idScreen = "/cart";
 
   const CartPage({super.key});
@@ -44,10 +43,10 @@ class _CartPageState extends State<CartPage> {
                     child: Container(
                       height: 110,
                       width: 100,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage("images/pizza.png"))),
+                      // decoration: BoxDecoration(
+                      //     image: DecorationImage(
+                      //         fit: BoxFit.fill,
+                      //         image: AssetImage("images/pizza.png"))),
                     ),
                   ),
                   Container(
@@ -314,7 +313,7 @@ class _CartPageState extends State<CartPage> {
         ),
       ),
       appBar: AppBar(
-     //   backgroundColor: Colors.white,
+        //   backgroundColor: Colors.white,
         title: Text('cart Page'),
         leading: IconButton(
           icon: Icon(
@@ -322,7 +321,8 @@ class _CartPageState extends State<CartPage> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(context, HomeScreen.idScreen,(Route)=>false);
+            Navigator.pushNamedAndRemoveUntil(
+                context, HomeScreen.idScreen, (Route) => false);
           },
         ),
       ),

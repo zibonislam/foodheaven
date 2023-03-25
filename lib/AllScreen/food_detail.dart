@@ -79,7 +79,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                     //   fit: BoxFit.cover,
                     // ),
                     NetworkImage(
-                  "https://lattubiryani.com/wp-content/uploads/2021/09/699x699.png",
+                  widget.food!.image.toString(),
                 ),
               ),
             ),
@@ -190,7 +190,7 @@ class _FoodDetailsState extends State<FoodDetails> {
             width: 120,
             height: double.maxFinite,
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.red.withOpacity(0.1),
               borderRadius: BorderRadius.circular(30),
             ),
             // child: Row(children: [
@@ -248,6 +248,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                   onTap: () {
                     setState(() {
                       count++;
+                      print(count);
                     });
                   },
                 ),
