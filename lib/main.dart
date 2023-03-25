@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodheaven/AllScreen/LoginScreen.dart';
 import 'package:foodheaven/AllScreen/ProfileScreen.dart';
 import 'package:foodheaven/AllScreen/RegistrationScreen.dart';
+import 'package:foodheaven/AllScreen/cart.dart';
 
 import 'FoodRelated/FoodScreen.dart';
 
@@ -31,14 +32,14 @@ class Login extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      initialRoute: FoodScreen.idScreen,
+      initialRoute: ProfileScreen.idScreen,
 
       routes: {
         RegistrationScreen.idScreen: (context) => RegistrationScreen(),
         LoginScreen.idScreen: (context) => LoginScreen(),
         ProfileScreen.idScreen: (context) => ProfileScreen(),
 
-          FoodScreen.idScreen: (context) => FoodScreen()
+        FoodScreen.idScreen: (context) => FoodScreen(),
 
         // MyHome.idScreen: (context) => MyHome(),
       },
