@@ -110,16 +110,16 @@ class FoodScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Food'),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              // Navigator.pushNamedAndRemoveUntil(
-              //     context, HomeScreen.idScreen, (route) => false);
-            },
-          ),
-        ),
+        // appBar: AppBar(
+        //   title: Text('Food'),
+        //   leading: IconButton(
+        //     icon: Icon(Icons.arrow_back),
+        //     onPressed: () {
+        //       // Navigator.pushNamedAndRemoveUntil(
+        //       //     context, HomeScreen.idScreen, (route) => false);
+        //     },
+        //   ),
+        // ),
         body: Column(
           children: [
             Text(
@@ -208,8 +208,7 @@ class FoodScreen extends StatelessWidget {
   }
 }
 
-class HomeScreen {
-}
+
 
 class ImageData {
   final String imagePath;

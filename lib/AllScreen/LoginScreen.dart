@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodheaven/AllScreen/RegistrationScreen.dart';
 
+import 'homeScreen.dart';
+
 class LoginScreen extends StatelessWidget {
   // const LoginScreen({Key? key}) : super(key: key);
 
@@ -92,6 +94,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
+                           Navigator.pushNamedAndRemoveUntil(context,HomeScreen.idScreen, (route) =>  false);
                           print("User Email : " +
                               emailController.text +
                               " User Password : " +
