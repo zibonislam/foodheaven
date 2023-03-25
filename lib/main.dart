@@ -3,6 +3,7 @@ import 'package:foodheaven/AllScreen/LoginScreen.dart';
 import 'package:foodheaven/AllScreen/ProfileScreen.dart';
 import 'package:foodheaven/AllScreen/RegistrationScreen.dart';
 
+import 'AllScreen/homeScreen.dart';
 import 'FoodRelated/FoodScreen.dart';
 
 void main() {
@@ -31,16 +32,17 @@ class Login extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      initialRoute: FoodScreen.idScreen,
+      initialRoute: HomeScreen.idScreen,
 
       routes: {
         RegistrationScreen.idScreen: (context) => RegistrationScreen(),
         LoginScreen.idScreen: (context) => LoginScreen(),
         ProfileScreen.idScreen: (context) => ProfileScreen(),
 
-          FoodScreen.idScreen: (context) => FoodScreen()
+          FoodScreen.idScreen: (context) => FoodScreen(),
+          HomeScreen.idScreen: (context) => HomeScreen(),
 
-        // MyHome.idScreen: (context) => MyHome(),
+        
       },
     );
   }
