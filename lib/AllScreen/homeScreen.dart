@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:foodheaven/AllScreen/cart.dart';
 import 'package:foodheaven/AllScreen/mainDrawer.dart';
 import 'package:foodheaven/AllScreen/searching.dart';
 
@@ -38,7 +39,7 @@ class HomeScreen extends StatelessWidget {
     IconButton(
       icon: Icon(Icons.shopping_cart_rounded),
       onPressed: () {
-        // do something
+       Navigator.pushNamedAndRemoveUntil(context,CartPage.idScreen, (route) =>  false);
       },
     ),
    

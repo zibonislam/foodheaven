@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:foodheaven/AllScreen/homeScreen.dart';
 
 class CartPage extends StatefulWidget {
+
   static String idScreen = "/cart";
+
   const CartPage({super.key});
 
   @override
@@ -311,14 +314,16 @@ class _CartPageState extends State<CartPage> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text("cart Page"),
+     //   backgroundColor: Colors.white,
+        title: Text('cart Page'),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_new_outlined,
             color: Colors.black,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(context, HomeScreen.idScreen,(Route)=>false);
+          },
         ),
       ),
       body: SingleChildScrollView(

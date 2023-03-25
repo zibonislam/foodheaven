@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:foodheaven/AllScreen/homeScreen.dart';
 import 'package:foodheaven/services/foodApi.dart';
 
 import '../models/food.dart';
@@ -38,6 +39,7 @@ Future<void> getFood() async {
 
 class Searching extends StatefulWidget {
   const Searching({super.key});
+
   static String idScreen = "searching";
 
   @override
@@ -112,51 +114,61 @@ class _SearchingState extends State<Searching> {
   // }
 
   Widget searchingTabBar() {
-    return MaterialApp(
-        home: DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.red,
-            title: Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                hintText: "Search for Restaurants & Foods",
-                                hintStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.0,
-                                )),
-                          ),
-                        ),
-                        Expanded(
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.search_rounded)))
-                      ],
-                    ),
-                  ),
-                  Row(
-                    children: [],
-                  )
-                ],
-              ),
+    return 
+         SafeArea(
+           child: DefaultTabController(
+               length: 2,
+               child: Scaffold(
+                 appBar: AppBar(
+              backgroundColor: Colors.red,
+               leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                 Navigator.pushNamedAndRemoveUntil(
+                    context, HomeScreen.idScreen, (route) => false);
+              },
             ),
-            bottom: const TabBar(tabs: [Text("Food"), Text("Restaurant")])),
-        body: TabBarView(
-          children: [foodApp(), restaurentApp()],
-        ),
-      ),
-    ));
+              title: Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                  hintText: "Search for Restaurants & Foods",
+                                  hintStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.0,
+                                  )
+                                  ),
+                            ),
+                          ),
+                          Expanded(
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.search_rounded)))
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [],
+                    )
+                  ],
+                ),
+              ),
+              bottom: const TabBar(tabs: [Text("Food"), Text("Restaurant")])),
+                 body: TabBarView(
+            children: [foodApp(), restaurentApp()],
+                 ),
+               ),
+             ),
+         );
   }
 }
 

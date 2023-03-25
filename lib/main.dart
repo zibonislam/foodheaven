@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:foodheaven/AllScreen/LoginScreen.dart';
 import 'package:foodheaven/AllScreen/ProfileScreen.dart';
 import 'package:foodheaven/AllScreen/RegistrationScreen.dart';
+import 'package:foodheaven/AllScreen/cart.dart';
+import 'package:foodheaven/AllScreen/searching.dart';
 
 import 'AllScreen/homeScreen.dart';
 import 'FoodRelated/FoodScreen.dart';
@@ -41,6 +43,8 @@ class Login extends StatelessWidget {
 
           FoodScreen.idScreen: (context) => FoodScreen(),
           HomeScreen.idScreen: (context) => HomeScreen(),
+             Searching.idScreen: (context) => Searching(),
+             CartPage.idScreen: (context) => CartPage(),
 
         
       },
