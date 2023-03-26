@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:foodheaven/AllScreen/homeScreen.dart';
 import 'package:foodheaven/models/food.dart';
 
 class FoodDetails extends StatefulWidget {
@@ -24,7 +25,20 @@ class _FoodDetailsState extends State<FoodDetails> {
         ),
       ),
       backgroundColor: Color.fromARGB(246, 241, 230, 228),
-      appBar: AppBar(backgroundColor: Colors.white),
+      appBar: AppBar(
+        //   backgroundColor: Colors.white,
+        title: Text('cart Page'),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_new_outlined,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+                context, HomeScreen.idScreen, (Route) => false);
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
