@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:foodheaven/AllScreen/cart.dart';
 import 'package:foodheaven/AllScreen/homeScreen.dart';
 import 'package:foodheaven/models/food.dart';
+import 'package:foodheaven/services/foodToCart.dart';
 
 class FoodDetails extends StatefulWidget {
   static String idScreen = "food";
@@ -15,12 +17,36 @@ class FoodDetails extends StatefulWidget {
 
 class _FoodDetailsState extends State<FoodDetails> {
   int count = 1;
+  String _image = "";
+  String _name = "";
+  String _restaurant = "";
+  int _price = 0;
+
   Widget background() {
     return SafeArea(
         child: Scaffold(
       bottomNavigationBar: Container(
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () async {
+            Food foodi = new Food();
+
+            foodi.foodName = _name;
+            foodi.restaurant = _restaurant;
+            // foodi.price =_price;
+            foodi.quantity = count;
+            foodi.image = _image;
+
+            var data = (await FoodToCartService.addToCart(foodi));
+            // print("Delete Call!");
+
+            print(data);
+
+            print("Name " + _name);
+            print("restaurant " + _restaurant);
+            print(count);
+            Navigator.pushNamedAndRemoveUntil(
+                context, CartPage.idScreen, (route) => false);
+          },
           child: Text('Add to Cart'),
         ),
       ),
@@ -93,7 +119,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                     //   fit: BoxFit.cover,
                     // ),
                     NetworkImage(
-                  widget.food!.image.toString(),
+                  _image = widget.food!.image.toString(),
                 ),
               ),
             ),
@@ -110,7 +136,7 @@ class _FoodDetailsState extends State<FoodDetails> {
       child: Column(
         children: [
           Text(
-            widget.food!.foodName.toString(),
+            _name = widget.food!.foodName.toString(),
             // "Food Name",
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -132,7 +158,7 @@ class _FoodDetailsState extends State<FoodDetails> {
             height: 20,
           ),
           Text(
-            widget.food!.restaurant.toString(),
+            _restaurant = widget.food!.restaurant.toString(),
             // "Restaurant Name:",
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -141,6 +167,15 @@ class _FoodDetailsState extends State<FoodDetails> {
           ),
           SizedBox(
             height: 20,
+          ),
+          Text(
+            "45",
+            // (_price = widget.food!.price.toString() as int) as String,
+            // "Restaurant Name:",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -158,20 +193,6 @@ class _FoodDetailsState extends State<FoodDetails> {
           SizedBox(
             height: 105,
           ),
-          // FloatingActionButton.extended(
-          //   backgroundColor: Color.fromARGB(246, 241, 230, 228),
-          //   foregroundColor: Colors.black,
-
-          //   //mini: true,
-          //   tooltip: "Add to Cart",
-          //   icon: Icon(Icons.add_shopping_cart_rounded),
-
-          //   onPressed: () {
-          //     // Respond to button press
-          //   },
-          //   label: Text("Add to Cart"),
-          //   //Icon(Icons.add_shopping_cart_rounded),
-          // )
         ],
       ),
     );
@@ -256,62 +277,14 @@ class _FoodDetailsState extends State<FoodDetails> {
                     ),
                   ),
                 ),
-
                 GestureDetector(
                   child: Icon(Icons.add),
                   onTap: () {
                     setState(() {
                       count++;
-                      print(count);
                     });
                   },
                 ),
-
-                // SizedBox(
-                //   width: 25,
-                // ),
-                // Expanded(
-                //   child: SizedBox(
-                //     width: 25,
-                //     child: Text(
-                //       "-",
-                //       style: TextStyle(
-                //         fontSize: 20,
-                //         fontWeight: FontWeight.bold,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // Expanded(
-                //   child: Center(
-                //     child: Container(
-                //       padding: EdgeInsets.all(8),
-                //       decoration: BoxDecoration(
-                //         shape: BoxShape.circle,
-                //         color: Colors.white,
-                //       ),
-                //       child: Text(
-                //         "0",
-                //         style: TextStyle(
-                //           fontSize: 20,
-                //           fontWeight: FontWeight.bold,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(
-                //   width: 20,
-                // ),
-                // Expanded(
-                //   child: Text(
-                //     "+",
-                //     style: TextStyle(
-                //       fontSize: 20,
-                //       fontWeight: FontWeight.bold,
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),
