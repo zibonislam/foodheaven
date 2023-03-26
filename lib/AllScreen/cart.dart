@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:foodheaven/AllScreen/homeScreen.dart';
+import 'package:foodheaven/models/cart.dart';
+import 'package:foodheaven/services/foodToCart.dart';
 
 class CartPage extends StatefulWidget {
   static String idScreen = "/cart";
@@ -13,6 +15,16 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  late List<Cart>? _cartModel = [];
+
+  void getCart() async {
+    _cartModel = (await FoodToCartService().getCart())!;
+    print("getData-----");
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(
+          () {},
+        ));
+  }
+
   int count = 1;
   Widget cartbody() {
     return Container(
@@ -29,75 +41,96 @@ class _CartPageState extends State<CartPage> {
         tileColor: Colors.yellow[100],
         style: ListTileStyle.list,
         dense: true,
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: 3,
-          itemBuilder: (BuildContext context, int index) => Card(
-            margin: const EdgeInsets.all(10),
-            child: SingleChildScrollView(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 110,
-                      width: 100,
-                      // decoration: BoxDecoration(
-                      //     image: DecorationImage(
-                      //         fit: BoxFit.fill,
-                      //         image: AssetImage("images/pizza.png"))),
-                    ),
-                  ),
-                  Container(
-                    width: 300,
-                    height: 110,
-                    child: ListTile(
-                      title: Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Pizza",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
+        child: _cartModel == null || _cartModel!.isEmpty
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: _cartModel!.length,
+                itemBuilder: (BuildContext context, int index) => Card(
+                  margin: const EdgeInsets.all(10),
+                  child: SingleChildScrollView(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 110,
+                            width: 100,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(
+                                        _cartModel![index].image.toString())
+                                    // NetworkImage(
+                                    //   // _foodModel![index].image.,
+                                    //   _cartModel![index].image.toString(),
+                                    //   // ${_foodModel![index].image}
+                                    // ),
+                                    )),
+                          ),
+                        ),
+                        Container(
+                          width: 300,
+                          height: 110,
+                          child: ListTile(
+                            title: Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    _cartModel![index].foodName.toString(),
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1,
+                                  ),
+                                  Text(
+                                    _cartModel![index].price.toString(),
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1,
+                                  ),
+                                  Text(
+                                    _cartModel![index].quantity.toString(),
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 1,
+                                  ),
+                                  Center(child: Quantity()),
+                                ],
                               ),
                             ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Text(
-                              "price",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                            trailing: Padding(
+                              padding: EdgeInsets.all(10),
+                              child: IconButton(
+                                icon: Icon(Icons.delete_forever),
+                                iconSize: 40,
+                                color: Colors.redAccent,
+                                onPressed: () {},
                               ),
                             ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Center(child: Quantity()),
-                          ],
+                          ),
                         ),
-                      ),
-                      trailing: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: IconButton(
-                          icon: Icon(Icons.delete_forever),
-                          iconSize: 40,
-                          color: Colors.redAccent,
-                          onPressed: () {},
-                        ),
-                      ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
       ),
     );
   }
@@ -300,6 +333,14 @@ class _CartPageState extends State<CartPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCart();
+    print("init");
   }
 
   @override

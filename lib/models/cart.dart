@@ -1,54 +1,60 @@
 // To parse this JSON data, do
 //
-//     final food = foodFromJson(jsonString);
+//     final cart = cartFromJson(jsonString);
 
 import 'dart:convert';
 
-List<Food> foodFromJson(String str) =>
-    List<Food>.from(json.decode(str).map((x) => Food.fromJson(x)));
+List<Cart> cartFromJson(String str) =>
+    List<Cart>.from(json.decode(str).map((x) => Cart.fromJson(x)));
 
-String foodToJson(List<Food> data) =>
+String cartToJson(List<Cart> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Food {
-  Food({
+class Cart {
+  Cart({
     this.id,
     this.foodCode,
     this.foodName,
     this.orgin,
     this.restaurant,
     this.price,
+    this.quantity,
     this.category,
     this.image,
     this.foodDescription,
     this.discount,
-    this.quantity,
+    this.userId,
+    this.foodId,
   });
 
   int? id;
   String? foodCode;
   String? foodName;
   String? orgin;
-  String? restaurant;
+  dynamic restaurant;
   int? price;
-  String? category;
+  int? quantity;
+  dynamic category;
   String? image;
   String? foodDescription;
   int? discount;
-  int? quantity;
+  int? userId;
+  int? foodId;
 
-  factory Food.fromJson(Map<String, dynamic> json) => Food(
+  factory Cart.fromJson(Map<String, dynamic> json) => Cart(
         id: json["id"],
         foodCode: json["food_code"],
         foodName: json["food_name"],
         orgin: json["orgin"],
         restaurant: json["restaurant"],
         price: json["price"],
+        quantity: json["quantity"],
         category: json["category"],
         image: json["image"],
         foodDescription: json["food_description"],
         discount: json["discount"],
-        quantity: json["quantity"],
+        userId: json["userId"],
+        foodId: json["foodId"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -58,10 +64,12 @@ class Food {
         "orgin": orgin,
         "restaurant": restaurant,
         "price": price,
+        "quantity": quantity,
         "category": category,
         "image": image,
         "food_description": foodDescription,
         "discount": discount,
-        "quantity": quantity,
+        "userId": userId,
+        "foodId": foodId,
       };
 }
