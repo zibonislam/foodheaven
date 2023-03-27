@@ -11,7 +11,7 @@ class FoodService {
       print("API Call---------- ");
 
       var url = Uri.parse(ApiConstants.baseUrl2);
-      var response = await http.get(url);
+      http.Response response = await http.get(url);
       print("API Call----------2 ");
 
       if (response.statusCode == 200) {

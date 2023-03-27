@@ -16,7 +16,7 @@ class OrderService {
     var url = Uri.parse(ApiConstants.baseUrl +
         ApiConstants.orderMidPoint +
         ApiConstants.Endpoint);
-    var response =
+    http.Response response =
         await http.post(url, headers: ApiConstants.headers, body: body);
     if (response.statusCode == 200) {
       // Posts post = postsFromJson(response.body) as Posts;
@@ -34,16 +34,16 @@ class OrderService {
 
   Future<List<Cart>?> getorder() async {
     try {
-      print("API Call----------cart ");
+      print("API Call----------order ");
 
       var url = Uri.parse(ApiConstants.baseUrl +
           ApiConstants.cartMidPoint +
           ApiConstants.Endpoint);
-      var response = await http.get(url);
-      print("API Call----------cart2 ");
+      http.Response response = await http.get(url);
+      print("API Call----------order2 ");
 
       if (response.statusCode == 200) {
-        print("API Call----------cart3 ");
+        print("API Call----------order3 ");
 
         List<Cart> _cartFood = cartFromJson(response.body);
         return _cartFood;
