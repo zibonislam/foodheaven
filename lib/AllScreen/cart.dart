@@ -159,6 +159,7 @@ class _CartPageState extends State<CartPage> {
             color: Colors.black,
           ),
           onTap: () {
+            print("dddd");
             setState(() {
               count--;
             });
@@ -408,11 +409,12 @@ class _CartPageState extends State<CartPage> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [cartbody(), totalAmount()],
-        ),
-      ),
+      body: cartbody(),
+      // SingleChildScrollView(
+      //   child: Column(
+      //     children: [cartbody(), totalAmount()],
+      //   ),
+      // ),
     ));
   }
 }

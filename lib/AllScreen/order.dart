@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:foodheaven/models/order.dart';
+import 'package:foodheaven/services/orderService.dart';
 
 import 'homeScreen.dart';
 
@@ -14,6 +16,16 @@ class OrderPage extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
+  late List<Order>? _orderModel = [];
+
+  void getOrder() async {
+    _orderModel = (await OrderService().getorder())!;
+    print("getData-----");
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(
+          () {},
+        ));
+  }
+
   Widget orderbody() {
     return Container(
       // decoration: BoxDecoration(
@@ -29,85 +41,98 @@ class _OrderPageState extends State<OrderPage> {
         tileColor: Colors.yellow[100],
         style: ListTileStyle.list,
         dense: true,
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: 3,
-          itemBuilder: (BuildContext context, int index) => Card(
-            margin: const EdgeInsets.all(10),
-            child: SingleChildScrollView(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 110,
-                      width: 100,
-                      // decoration: BoxDecoration(
-                      //     image: DecorationImage(
-                      //         fit: BoxFit.fill,
-                      //         image: AssetImage("images/pizza.png"))),
-                    ),
-                  ),
-                  Container(
-                    width: 300,
-                    height: 110,
-                    child: ListTile(
-                      title: Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Center(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Pizza",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              Text(
-                                "Quantity",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "price",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
+        child: _orderModel == null || _orderModel!.isEmpty
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: _orderModel!.length,
+                itemBuilder: (BuildContext context, int index) => Card(
+                  margin: const EdgeInsets.all(10),
+                  child: SingleChildScrollView(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 110,
+                            width: 100,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(
+                                        "https://e7.pngegg.com/pngimages/936/444/png-clipart-computer-icons-icon-design-order-icon-cdr-angle-thumbnail.png"))),
                           ),
                         ),
-                      ),
-                      trailing: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: IconButton(
-                          icon: Icon(Icons.delete_forever),
-                          iconSize: 40,
-                          color: Colors.redAccent,
-                          onPressed: () {},
+                        Container(
+                          width: 300,
+                          height: 110,
+                          child: ListTile(
+                            title: Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Center(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      _orderModel![index].id.toString(),
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 7,
+                                    ),
+                                    Text(
+                                      _orderModel![index].state.toString(),
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      _orderModel![index].totalPrice.toString(),
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            trailing: Padding(
+                              padding: EdgeInsets.all(10),
+                              child: IconButton(
+                                icon: Icon(Icons.delete_forever),
+                                iconSize: 40,
+                                color: Colors.redAccent,
+                                onPressed: () {},
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getOrder();
+    print("init");
   }
 
   @override

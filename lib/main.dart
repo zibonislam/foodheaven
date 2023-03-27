@@ -3,9 +3,12 @@ import 'package:foodheaven/AllScreen/LoginScreen.dart';
 import 'package:foodheaven/AllScreen/ProfileScreen.dart';
 import 'package:foodheaven/AllScreen/RegistrationScreen.dart';
 import 'package:foodheaven/AllScreen/cart.dart';
+
+
 import 'package:foodheaven/AllScreen/changeAddressScreen.dart';
 import 'package:foodheaven/AllScreen/checkoutScreen.dart';
 import 'package:foodheaven/AllScreen/food_detail.dart';
+
 import 'package:foodheaven/AllScreen/order.dart';
 
 import 'package:foodheaven/AllScreen/searching.dart';
@@ -52,6 +55,9 @@ class Login extends StatelessWidget {
         Searching.idScreen: (context) => Searching(),
         CartPage.idScreen: (context) => CartPage(),
         FoodScreen.idScreen: (context) => FoodScreen(),
+
+        OrderPage.idScreen: (context) => OrderPage(),
+
         ChangeAddressScreen.idScreen: (context) => ChangeAddressScreen(),
         CheckoutScreen.idScreen: (context) => CheckoutScreen(),
         FoodDetails.idScreen: (context) => FoodDetails(),
@@ -61,6 +67,7 @@ class Login extends StatelessWidget {
         TrackingOrderPage2.idScreen: (context) => TrackingOrderPage2(
               orderStatus: '',
             )
+
       },
     );
   }

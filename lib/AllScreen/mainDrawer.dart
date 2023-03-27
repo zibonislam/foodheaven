@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:foodheaven/AllScreen/order.dart';
 
 import 'LoginScreen.dart';
 import 'ProfileScreen.dart';
@@ -44,14 +45,24 @@ class MainDrawer extends StatelessWidget {
               leading: Icon(Icons.home),
               title: Text('Product List'),
               onTap: () {
+
+                Navigator.pushNamedAndRemoveUntil(
+                    context, OrderPage.idScreen, (route) => false);
+
                 //  Navigator.pushNamedAndRemoveUntil(context,ProductView.idScreen, (route) =>  false);
+
               },
             ),
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Create'),
               onTap: () {
+
+                Navigator.pushNamedAndRemoveUntil(
+                    context, HomeScreen.idScreen, (route) => false);
+
                 //   Navigator.pushNamedAndRemoveUntil(context,HomeScreen.idScreen, (route) =>  false);
+
               },
             ),
             ListTile(
