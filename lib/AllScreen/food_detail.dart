@@ -12,6 +12,7 @@ import 'package:foodheaven/services/foodToCart.dart';
 
 class FoodDetails extends StatefulWidget {
   static String idScreen = "food";
+
   final Food? food;
   const FoodDetails({super.key, this.food});
 

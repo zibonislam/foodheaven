@@ -120,18 +120,16 @@ class FoodScreen extends StatelessWidget {
         //     },
         //   ),
         // ),
+        backgroundColor: Color.fromARGB(255, 173, 2, 33),
         body: Column(
           children: [
             Text(
               'Food Items',
-              style: TextStyle(
-                fontSize: 25,
-              ),
+              style: TextStyle(fontSize: 25, color: Colors.white),
             ),
-             SizedBox(
+            SizedBox(
               height: 10.0,
             ),
-
             Expanded(
               child: GridView(
                 padding: const EdgeInsets.all(20.0),
@@ -163,16 +161,13 @@ class FoodScreen extends StatelessWidget {
             SizedBox(
               height: 50.0,
             ),
-             Text(
-              'Restaurents',
-              style: TextStyle(
-                fontSize: 25,
-              ),
+            Text(
+              'Restaurants',
+              style: TextStyle(fontSize: 25, color: Colors.white),
             ),
             SizedBox(
               height: 20.0,
             ),
-
             Expanded(
               child: GridView(
                 padding: const EdgeInsets.all(20.0),
@@ -187,7 +182,7 @@ class FoodScreen extends StatelessWidget {
                       children: [
                         Image.asset(
                           imageData.imagePath,
-                          width: 150,// height: 120,
+                          width: 150, // height: 120,
                         ),
                         const SizedBox(height: 8.0),
                         Text(imageData.name),
@@ -207,8 +202,6 @@ class FoodScreen extends StatelessWidget {
     );
   }
 }
-
-
 
 class ImageData {
   final String imagePath;

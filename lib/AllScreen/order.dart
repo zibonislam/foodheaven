@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
+import 'homeScreen.dart';
+
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
+
   static String idScreen = "order";
 
   @override
@@ -146,7 +149,10 @@ class _OrderPageState extends State<OrderPage> {
             Icons.arrow_back_ios_new_outlined,
             color: Colors.black,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+                context, HomeScreen.idScreen, (Route) => false);
+          },
         ),
       ),
       body: orderbody(),
