@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:foodheaven/AllScreen/homeScreen.dart';
+import 'package:foodheaven/AllScreen/order.dart';
 import 'package:foodheaven/models/cart.dart';
+import 'package:foodheaven/models/food.dart';
 import 'package:foodheaven/services/foodToCart.dart';
+import 'package:foodheaven/services/orderService.dart';
 
 class CartPage extends StatefulWidget {
   static String idScreen = "/cart";
@@ -15,6 +18,8 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  int _quantity = 0;
+  int _totalPrice = 0;
   late List<Cart>? _cartModel = [];
 
   void getCart() async {
@@ -152,7 +157,11 @@ class _CartPageState extends State<CartPage> {
             size: 13,
             color: Colors.black,
           ),
-          onTap: () {},
+          onTap: () {
+            setState(() {
+              count--;
+            });
+          },
         ),
         GestureDetector(
           child: Center(
@@ -164,6 +173,7 @@ class _CartPageState extends State<CartPage> {
               ),
               child: Text(
                 count.toString(),
+                //  _cartModel![index].image.toString(),
                 style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -349,7 +359,22 @@ class _CartPageState extends State<CartPage> {
         child: Scaffold(
       bottomNavigationBar: Container(
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () async {
+            Cart carti = new Cart();
+            carti.price = _totalPrice;
+            // carti.quantity = count;
+
+            var data = (await OrderService.addToOrder(carti));
+
+            print(data);
+
+            print(_totalPrice);
+            print(count);
+            Navigator.pushNamedAndRemoveUntil(
+                context, HomeScreen.idScreen, (Route) => false);
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, OrderPage.idScreen, (route) => false);
+          },
           child: Text('Proced to Checkout'),
         ),
       ),

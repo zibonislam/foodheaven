@@ -19,7 +19,7 @@ class FoodToCartService {
     var url = Uri.parse(ApiConstants.baseUrl +
         ApiConstants.cartMidPoint +
         ApiConstants.Endpoint);
-    var response =
+    http.Response response =
         await http.post(url, headers: ApiConstants.headers, body: body);
     if (response.statusCode == 200) {
       // Posts post = postsFromJson(response.body) as Posts;
@@ -42,7 +42,7 @@ class FoodToCartService {
       var url = Uri.parse(ApiConstants.baseUrl +
           ApiConstants.cartMidPoint +
           ApiConstants.Endpoint);
-      var response = await http.get(url);
+      http.Response response = await http.get(url);
       print("API Call----------cart2 ");
 
       if (response.statusCode == 200) {
