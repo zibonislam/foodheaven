@@ -144,17 +144,17 @@ class _FoodScreenState extends State<FoodScreen> {
         //     },
         //   ),
         // ),
+        backgroundColor: Color.fromARGB(255, 173, 2, 33),
         body: Column(
           children: [
             Text(
               'Food Items',
-              style: TextStyle(
-                fontSize: 25,
-              ),
+              style: TextStyle(fontSize: 25, color: Colors.white),
             ),
             SizedBox(
               height: 10.0,
             ),
+
             Expanded(child: foodview()
 
                 // GridView (
@@ -183,15 +183,28 @@ class _FoodScreenState extends State<FoodScreen> {
                 //     );
                 //   }).toList(),
                 // ),
+
+            Expanded(
+              child: GridView(
+                padding: const EdgeInsets.all(20.0),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 0.8,
+
                 ),
             SizedBox(
               height: 50.0,
             ),
             Text(
+
               'Restaurents',
               style: TextStyle(
                 fontSize: 25,
               ),
+
+              'Restaurants',
+              style: TextStyle(fontSize: 25, color: Colors.white),
+
             ),
             SizedBox(
               height: 20.0,
@@ -243,6 +256,7 @@ class ImageData {
     required this.description,
   });
 }
+
 
 Widget foodApp() {
   return Container(
@@ -328,3 +342,4 @@ Widget foodview() {
     ),
   );
 }
+

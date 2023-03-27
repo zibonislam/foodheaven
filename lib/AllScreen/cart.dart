@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:foodheaven/AllScreen/checkoutScreen.dart';
 import 'package:foodheaven/AllScreen/homeScreen.dart';
 import 'package:foodheaven/AllScreen/order.dart';
 import 'package:foodheaven/models/cart.dart';
@@ -361,6 +362,8 @@ class _CartPageState extends State<CartPage> {
       bottomNavigationBar: Container(
         child: ElevatedButton(
           onPressed: () async {
+            Navigator.pushNamedAndRemoveUntil(
+                context, CheckoutScreen.idScreen, (Route) => false);
             Cart carti = new Cart();
             carti.price = _totalPrice;
             // carti.quantity = count;
@@ -371,8 +374,7 @@ class _CartPageState extends State<CartPage> {
 
             print(_totalPrice);
             print(count);
-            Navigator.pushNamedAndRemoveUntil(
-                context, HomeScreen.idScreen, (Route) => false);
+
             // Navigator.pushNamedAndRemoveUntil(
             //     context, OrderPage.idScreen, (route) => false);
           },
@@ -380,8 +382,22 @@ class _CartPageState extends State<CartPage> {
         ),
       ),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 173, 2, 33),
+        title: Column(
+          children: [
+            Center(
+              child: Image(
+                image: NetworkImage(
+                    "https://media.licdn.com/dms/image/C5622AQHck53gmEkYhQ/feedshare-shrink_1280/0/1679069156443?e=1681948800&v=beta&t=72WDFfc7qCNRsGNjGMdMA4zgxXoOjY-0gmJD24TK878"),
+                width: 300.0,
+                height: 500.0,
+              ),
+            )
+          ],
+        ),
+
         //   backgroundColor: Colors.white,
-        title: Text('cart Page'),
+        // title: const Text('cart Page'),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_new_outlined,

@@ -19,8 +19,8 @@ class MainDrawer extends StatelessWidget {
         child: Column(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text('Nazmul Hassan'),
-              accountEmail: Text('topunazmulhassan@gmail.com'),
+              accountName: Text(''),
+              accountEmail: Text(''),
               currentAccountPicture: CircleAvatar(
                   //   backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
                   ),
@@ -45,16 +45,24 @@ class MainDrawer extends StatelessWidget {
               leading: Icon(Icons.home),
               title: Text('Product List'),
               onTap: () {
+
                 Navigator.pushNamedAndRemoveUntil(
                     context, OrderPage.idScreen, (route) => false);
+
+                //  Navigator.pushNamedAndRemoveUntil(context,ProductView.idScreen, (route) =>  false);
+
               },
             ),
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Create'),
               onTap: () {
+
                 Navigator.pushNamedAndRemoveUntil(
                     context, HomeScreen.idScreen, (route) => false);
+
+                //   Navigator.pushNamedAndRemoveUntil(context,HomeScreen.idScreen, (route) =>  false);
+
               },
             ),
             ListTile(
