@@ -4,7 +4,6 @@ import 'package:foodheaven/AllScreen/homeScreen.dart';
 import 'LoginScreen.dart';
 
 class ProfileScreen extends StatelessWidget {
-  
   static String idScreen = "profile";
 
   @override
@@ -61,8 +60,8 @@ class ProfileScreen extends StatelessWidget {
                       CircleAvatar(
                           child: IconButton(
                               onPressed: () {},
-                              icon:
-                                  Icon(Icons.transfer_within_a_station_rounded))),
+                              icon: Icon(
+                                  Icons.transfer_within_a_station_rounded))),
                       SizedBox(
                         width: 15,
                       ),
@@ -79,8 +78,8 @@ class ProfileScreen extends StatelessWidget {
                     children: const [
                       Text(
                         "Khairul Islam Zibon",
-                        style:
-                            TextStyle(fontWeight: FontWeight.w900, fontSize: 26),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 26),
                       )
                     ],
                   ),
