@@ -1,10 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class FoodScreen extends StatelessWidget {
+import '../AllScreen/food_detail.dart';
+import '../models/food.dart';
+import '../services/foodApi.dart';
+
+late List<Food>? _foodModel = [];
+
+class FoodScreen extends StatefulWidget {
   const FoodScreen({Key? key}) : super(key: key);
 
   static String idScreen = "foodScreen";
+
+  @override
+  State<FoodScreen> createState() => _FoodScreenState();
+}
+
+class _FoodScreenState extends State<FoodScreen> {
+  void getFood() async {
+    _foodModel = (await FoodService().getFood())!;
+
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(
+          () {},
+        ));
+  }
+
+  @override
+  void initState() {
+    getFood();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,42 +152,42 @@ class FoodScreen extends StatelessWidget {
                 fontSize: 25,
               ),
             ),
-             SizedBox(
+            SizedBox(
               height: 10.0,
             ),
+            Expanded(child: foodview()
 
-            Expanded(
-              child: GridView(
-                padding: const EdgeInsets.all(20.0),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 0.8,
+                // GridView (
+                //   padding: const EdgeInsets.all(20.0),
+                //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                //     crossAxisCount: 3,
+                //     childAspectRatio: 0.8,
+                //   ),
+                //   children: imageDataList.map((imageData) {
+                //     return Container(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Column(
+                //         children: [
+                //           Image.asset(
+                //             imageData.imagePath,
+                //             width: 180,
+                //           ),
+                //           const SizedBox(height: 8.0),
+                //           Text(imageData.name),
+                //           Text(
+                //             imageData.description,
+                //             style: TextStyle(fontSize: 15),
+                //           ),
+                //         ],
+                //       ),
+                //     );
+                //   }).toList(),
+                // ),
                 ),
-                children: imageDataList.map((imageData) {
-                  return Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          imageData.imagePath,
-                          width: 180,
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(imageData.name),
-                        Text(
-                          imageData.description,
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
             SizedBox(
               height: 50.0,
             ),
-             Text(
+            Text(
               'Restaurents',
               style: TextStyle(
                 fontSize: 25,
@@ -172,7 +196,6 @@ class FoodScreen extends StatelessWidget {
             SizedBox(
               height: 20.0,
             ),
-
             Expanded(
               child: GridView(
                 padding: const EdgeInsets.all(20.0),
@@ -187,7 +210,7 @@ class FoodScreen extends StatelessWidget {
                       children: [
                         Image.asset(
                           imageData.imagePath,
-                          width: 150,// height: 120,
+                          width: 150, // height: 120,
                         ),
                         const SizedBox(height: 8.0),
                         Text(imageData.name),
@@ -208,8 +231,6 @@ class FoodScreen extends StatelessWidget {
   }
 }
 
-
-
 class ImageData {
   final String imagePath;
   final String name;
@@ -221,4 +242,89 @@ class ImageData {
     required this.name,
     required this.description,
   });
+}
+
+Widget foodApp() {
+  return Container(
+    child: ListTileTheme(
+      contentPadding: const EdgeInsets.all(10),
+      iconColor: Colors.red,
+      textColor: Colors.black54,
+      tileColor: Colors.yellow[100],
+      style: ListTileStyle.list,
+      dense: true,
+      child: _foodModel == null || _foodModel!.isEmpty
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemCount: _foodModel!.length,
+              itemBuilder: (context, index) => Card(
+                margin: const EdgeInsets.all(10),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      // _foodModel![index].image.,
+                      _foodModel![index].image.toString(),
+                      // ${_foodModel![index].image}
+                    ),
+                  ),
+                  title: Text(_foodModel![index].foodName.toString()),
+                  subtitle: Text(_foodModel![index].price.toString()),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil<dynamic>(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        FoodDetails(food: _foodModel![index])),
+                                (route) => false);
+                          },
+                          icon: const Icon(Icons.arrow_back_ios_sharp)),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.add_shopping_cart_rounded))
+                    ],
+                  ),
+                ),
+              ),
+            ),
+    ),
+  );
+}
+
+Widget foodview() {
+  return Container(
+    child: GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+      ),
+      itemCount: _foodModel!.length,
+      itemBuilder: (BuildContext context, int index) {
+        final item = _foodModel![index];
+        return Container(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Image.asset(
+                _foodModel![index].image.toString(),
+                width: 180,
+              ),
+              const SizedBox(height: 8.0),
+              Text(_foodModel![index].foodName.toString()),
+              Text(
+                _foodModel![index].price.toString(),
+                style: TextStyle(fontSize: 8),
+              ),
+            ],
+          ),
+        );
+      },
+    ),
+  );
 }

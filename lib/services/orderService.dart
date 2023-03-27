@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:foodheaven/constants.dart';
 import 'package:foodheaven/models/cart.dart';
+import 'package:foodheaven/models/order.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -32,12 +33,12 @@ class OrderService {
   }
   //getData
 
-  Future<List<Cart>?> getorder() async {
+  Future<List<Order>?> getorder() async {
     try {
       print("API Call----------order ");
 
       var url = Uri.parse(ApiConstants.baseUrl +
-          ApiConstants.cartMidPoint +
+          ApiConstants.orderMidPoint +
           ApiConstants.Endpoint);
       http.Response response = await http.get(url);
       print("API Call----------order2 ");
@@ -45,8 +46,8 @@ class OrderService {
       if (response.statusCode == 200) {
         print("API Call----------order3 ");
 
-        List<Cart> _cartFood = cartFromJson(response.body);
-        return _cartFood;
+        List<Order> _orderFood = orderFromJson(response.body);
+        return _orderFood;
       } else {
         print("something ");
       }
