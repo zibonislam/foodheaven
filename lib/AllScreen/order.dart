@@ -139,30 +139,6 @@ class _OrderPageState extends State<OrderPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.red,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white.withOpacity(.60),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        onTap: (value) {
-          // Respond to item press.
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_shopping_cart),
-            label: "Cart",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search_sharp), label: "Search"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.credit_score), label: "MY Order"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_outlined), label: "Profile"),
-        ],
-      ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
