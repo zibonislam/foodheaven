@@ -129,7 +129,7 @@ class _SearchingState extends State<Searching> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-              backgroundColor: Colors.red,
+              backgroundColor: Color.fromARGB(255, 173, 2, 33),
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {

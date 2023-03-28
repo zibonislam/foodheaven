@@ -19,11 +19,13 @@ class MainDrawer extends StatelessWidget {
         child: Column(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text(''),
-              accountEmail: Text(''),
+              accountName: Text('zibon'),
+              accountEmail: Text('zibon@gmail.com'),
               currentAccountPicture: CircleAvatar(
-                  //   backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
-                  ),
+                backgroundImage: NetworkImage(
+                    "https://media.licdn.com/dms/image/D5603AQFTPFfOA8Sygg/profile-displayphoto-shrink_800_800/0/1675060728932?e=2147483647&v=beta&t=1Fs6yW1U6NBu579gR3kLDJZq-HRk_wrqibbOAZ4QmI0"),
+                //   backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
+              ),
             ),
             ListTile(
               leading: Icon(Icons.account_box_sharp),
@@ -42,29 +44,25 @@ class MainDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Product List'),
+              leading: Icon(Icons.food_bank),
+              title: Text('Restaurant List'),
               onTap: () {
-
                 Navigator.pushNamedAndRemoveUntil(
                     context, OrderPage.idScreen, (route) => false);
 
                 //  Navigator.pushNamedAndRemoveUntil(context,ProductView.idScreen, (route) =>  false);
-
               },
             ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Create'),
-              onTap: () {
+            // ListTile(
+            //   leading: Icon(Icons.home),
+            //   title: Text('Create'),
+            //   onTap: () {
+            //     Navigator.pushNamedAndRemoveUntil(
+            //         context, HomeScreen.idScreen, (route) => false);
 
-                Navigator.pushNamedAndRemoveUntil(
-                    context, HomeScreen.idScreen, (route) => false);
-
-                //   Navigator.pushNamedAndRemoveUntil(context,HomeScreen.idScreen, (route) =>  false);
-
-              },
-            ),
+            //     //   Navigator.pushNamedAndRemoveUntil(context,HomeScreen.idScreen, (route) =>  false);
+            //   },
+            // ),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
