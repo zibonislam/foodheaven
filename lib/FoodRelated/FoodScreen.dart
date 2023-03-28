@@ -155,35 +155,7 @@ class _FoodScreenState extends State<FoodScreen> {
             SizedBox(
               height: 10.0,
             ),
-            Expanded(child: foodview()
-
-                // GridView (
-                //   padding: const EdgeInsets.all(20.0),
-                //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                //     crossAxisCount: 3,
-                //     childAspectRatio: 0.8,
-                //   ),
-                //   children: imageDataList.map((imageData) {
-                //     return Container(
-                //       padding: const EdgeInsets.all(8.0),
-                //       child: Column(
-                //         children: [
-                //           Image.asset(
-                //             imageData.imagePath,
-                //             width: 180,
-                //           ),
-                //           const SizedBox(height: 8.0),
-                //           Text(imageData.name),
-                //           Text(
-                //             imageData.description,
-                //             style: TextStyle(fontSize: 15),
-                //           ),
-                //         ],
-                //       ),
-                //     );
-                //   }).toList(),
-                // ),
-                ),
+            Expanded(child: foodview()),
             SizedBox(
               height: 50.0,
             ),
@@ -311,15 +283,32 @@ Widget foodview() {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Image.asset(
-                _foodModel![index].image.toString(),
-                width: 180,
+              Image(
+                image: NetworkImage(_foodModel![index].image.toString()),
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover,
               ),
+              // Image.asset(
+              //   _foodModel![index].image.toString(),
+              //   width: 180,
+              // ),
               const SizedBox(height: 8.0),
               Text(_foodModel![index].foodName.toString()),
               Text(
                 _foodModel![index].price.toString(),
                 style: TextStyle(fontSize: 8),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil<dynamic>(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              FoodDetails(food: _foodModel![index])),
+                      (route) => false);
+                },
+                child: Text("Details"),
               ),
             ],
           ),
