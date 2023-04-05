@@ -45,7 +45,7 @@ class MainDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.food_bank),
-              title: Text('Restaurant List'),
+              title: Text('My Order'),
               onTap: () {
                 Navigator.pushNamedAndRemoveUntil(
                     context, OrderPage.idScreen, (route) => false);
